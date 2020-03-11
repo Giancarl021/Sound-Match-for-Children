@@ -6,14 +6,14 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="bounceIn">
     <div class="wrapper">
         <ion-item lines="none" color="tertiary">
-            <ion-input placeholder="Nickname" type="text"></ion-input>
+            <ion-input [(ngModel)]="username" placeholder="Nickname" type="text"></ion-input>
         </ion-item>
         <ion-text></ion-text>
     </div>
 </ion-content>
 <ion-footer>
-    <ion-button expand="full" color="tertiary">Entrar</ion-button>
+    <ion-button class="bounceIn" expand="full" color="tertiary" (click)="login()">Entrar</ion-button>
 </ion-footer>
