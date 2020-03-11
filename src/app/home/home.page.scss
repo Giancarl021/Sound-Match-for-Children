@@ -2,6 +2,10 @@ ion-content ion-toolbar {
     --background: translucent;
 }
 
+ion-content {
+    --overflow: hidden;
+}
+
 .wrapper {
     position: relative;
     top: 50%;
@@ -15,7 +19,7 @@ ion-content ion-toolbar {
 }
 
 ion-item {
-    box-shadow: 3px 3px 2px #0002, -3px -3px 2px #fff1;
+    box-shadow: 3px 3px 2px #0003;
     margin: 10px 0;
     border-radius: 20px;;
 }

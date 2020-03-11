@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-home',
@@ -7,13 +8,19 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-    username : string;
+    username: string;
 
-    constructor() {
+    constructor(public navCtrl: NavController) {
         this.username = '';
     }
 
-    login() {
-        console.log(this.username);
+    async login() {
+        await this.navCtrl.navigateForward('game', {
+            queryParams: {
+                username: this.username
+            }
+        });
     }
+
+
 }

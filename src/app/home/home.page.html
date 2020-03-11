@@ -14,6 +14,6 @@
         <ion-text></ion-text>
     </div>
 </ion-content>
-<ion-footer>
-    <ion-button class="bounceIn" expand="full" color="tertiary" (click)="login()">Entrar</ion-button>
-</ion-footer>
+<div class="footer">
+    <ion-button class="animated bounceInUp" expand="full" color="tertiary" (click)="login()" [disabled]="!username">Entrar</ion-button>
+</div>
