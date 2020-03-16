@@ -11,37 +11,11 @@
 
 <ion-content>
     <ion-grid>
-        <ion-row>
-            <ion-col>
-                <ion-img [src]="items[0].image"></ion-img>
-            </ion-col>
-            <ion-col>
-                <ion-img [src]="items[1].image"></ion-img>
-            </ion-col>
-            <ion-col>
-                <ion-img [src]="items[2].image"></ion-img>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <ion-img [src]="items[3].image"></ion-img>
-            </ion-col>
-            <ion-col>
-                <ion-img [src]="items[4].image"></ion-img>
-            </ion-col>
-            <ion-col>
-                <ion-img [src]="items[5].image"></ion-img>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <ion-img [src]="items[6].image"></ion-img>
-            </ion-col>
-            <ion-col>
-                <ion-img [src]="items[7].image"></ion-img>
-            </ion-col>
-            <ion-col>
-                <ion-img [src]="items[8].image"></ion-img>
+        <ion-row *ngFor="let col of cols">
+            <ion-col *ngFor="let item of col">
+                <ion-button class="item" color="tertiary">
+                    <ion-img [src]="item.image"></ion-img>
+                </ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -50,6 +24,6 @@
 </ion-content>
 <ion-footer>
     <ion-button expand="block" color="tertiary">
-        <ion-icon name="play-circle"></ion-icon>
+        <ion-text>Tocar Som</ion-text>
     </ion-button>
 </ion-footer>

@@ -14,6 +14,7 @@ export class GamePage {
     currentAudio: string;
     items: MatchItem[];
     selectedItem: MatchItem;
+    cols: MatchItem[][];
 
     constructor(private router: Router) {
         if (this.router.getCurrentNavigation().extras.state) {
@@ -28,6 +29,20 @@ export class GamePage {
             this.items.push(new MatchItem(item));
         }
         this.selectItem();
+
+        let tmp = [];
+        this.cols = [];
+        for(let i = 0; i < this.items.length; i++) {
+            tmp.push(this.items[i]);
+            if(i !== 0 && (i + 1) % 3 === 0) {
+                this.cols.push(tmp);
+                tmp = [];
+            }
+        }
+        if(tmp.length) {
+            this.cols.push(tmp);
+        }
+
         this.currentAudio = '../../assets/audio/fallback.mp3';
     }
 
