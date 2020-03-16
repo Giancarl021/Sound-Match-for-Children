@@ -28,26 +28,30 @@ export class GamePage {
         for (const item of Items) {
             this.items.push(new MatchItem(item));
         }
+
         this.selectItem();
+        this.generateColumns();
 
-        let tmp = [];
-        this.cols = [];
-        for(let i = 0; i < this.items.length; i++) {
-            tmp.push(this.items[i]);
-            if(i !== 0 && (i + 1) % 3 === 0) {
-                this.cols.push(tmp);
-                tmp = [];
-            }
-        }
-        if(tmp.length) {
-            this.cols.push(tmp);
-        }
-
-        this.currentAudio = '../../assets/audio/fallback.mp3';
+        // this.currentAudio = '../../assets/audio/fallback.mp3';
     }
 
     private selectItem() {
         const i = Math.floor(Math.random() * this.items.length);
         this.selectedItem = this.items[i];
+    }
+
+    private generateColumns() {
+        let tmp = [];
+        this.cols = [];
+        for (let i = 0; i < this.items.length; i++) {
+            tmp.push(this.items[i]);
+            if (i !== 0 && (i + 1) % 3 === 0) {
+                this.cols.push(tmp);
+                tmp = [];
+            }
+        }
+        if (tmp.length) {
+            this.cols.push(tmp);
+        }
     }
 }
