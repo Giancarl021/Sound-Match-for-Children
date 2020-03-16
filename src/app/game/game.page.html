@@ -1,9 +1,55 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Game</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/" color="tertiary">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title>Jogar</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-text>{{user}}</ion-text>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-img [src]="items[0].image"></ion-img>
+            </ion-col>
+            <ion-col>
+                <ion-img [src]="items[1].image"></ion-img>
+            </ion-col>
+            <ion-col>
+                <ion-img [src]="items[2].image"></ion-img>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-img [src]="items[3].image"></ion-img>
+            </ion-col>
+            <ion-col>
+                <ion-img [src]="items[4].image"></ion-img>
+            </ion-col>
+            <ion-col>
+                <ion-img [src]="items[5].image"></ion-img>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-img [src]="items[6].image"></ion-img>
+            </ion-col>
+            <ion-col>
+                <ion-img [src]="items[7].image"></ion-img>
+            </ion-col>
+            <ion-col>
+                <ion-img [src]="items[8].image"></ion-img>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-text>Ícones feitos por <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> na <a
+            href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></ion-text>
 </ion-content>
+<ion-footer>
+    <ion-button expand="block" color="tertiary">
+        <ion-icon name="play-circle"></ion-icon>
+    </ion-button>
+</ion-footer>

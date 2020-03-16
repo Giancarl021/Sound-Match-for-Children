@@ -1,0 +1,21 @@
+ion-content {
+    --overflow: hidden;
+}
+
+ion-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-img {
+    width: 80%;
+    height: auto;
+}
+
+ion-text {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}

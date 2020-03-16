@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from '@ionic/angular';
+import {NavigationExtras, Router} from "@angular/router";
 
 @Component({
     selector: 'app-home',
@@ -10,16 +10,17 @@ export class HomePage {
 
     username: string;
 
-    constructor(public navCtrl: NavController) {
+    constructor(public router: Router) {
         this.username = '';
     }
 
-    async login() {
-        await this.navCtrl.navigateForward('game', {
-            queryParams: {
-                username: this.username
+    login() {
+        const navigationExtras: NavigationExtras = {
+            state: {
+                user: this.username
             }
-        });
+        };
+        this.router.navigate(['game'], navigationExtras).catch(console.log);
     }
 
 

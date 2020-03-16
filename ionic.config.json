@@ -1,5 +1,7 @@
 {
   "name": "Sound-Match-for-Children",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
