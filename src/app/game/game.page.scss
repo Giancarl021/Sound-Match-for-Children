@@ -1,7 +1,3 @@
-ion-content {
-    --overflow: hidden;
-}
-
 ion-col {
     display: flex;
     align-items: center;
@@ -22,4 +18,19 @@ ion-text {
 
 .item {
     height: 100%;
+}
+
+.win {
+    --ion-background-color: #f00;
+}
+
+.data-table {
+    border-radius: 10px;
+    --ion-background-color: #e4e4e4;
+    width: calc(100% - 20px);
+    margin: auto;
+}
+
+.data-table * {
+    background-color: inherit;
 }

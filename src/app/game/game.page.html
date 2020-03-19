@@ -13,17 +13,27 @@
     <ion-grid>
         <ion-row *ngFor="let col of cols">
             <ion-col *ngFor="let item of col">
-                <ion-button class="item" color="tertiary">
-                    <ion-img [src]="item.image"></ion-img>
+                <ion-button class="item" [color]="right ? 'success' : (wrong.includes(item) ? 'danger' : 'tertiary')">
+                    <ion-img [src]="item.image" (click)="match(item)"></ion-img>
                 </ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>
     <ion-text>Ícones feitos por <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> na <a
             href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></ion-text>
+    <ion-list lines="none" class="data-table">
+        <ion-item>
+            <ion-icon name="person"></ion-icon>
+            <ion-text>{{user}}</ion-text>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="logo-usd"></ion-icon>
+            <ion-text>{{points}}</ion-text>
+        </ion-item>
+    </ion-list>
 </ion-content>
 <ion-footer>
-    <ion-button expand="block" color="tertiary">
-        <ion-text>Tocar Som</ion-text>
+    <ion-button expand="block" [color]="right ? 'success' : 'tertiary'" [disabled]="playing">
+        <ion-text (click)="play()">{{firstRun ? 'Começar' : (right ? 'Próximo som' : 'Tocar Novamente')}}</ion-text>
     </ion-button>
 </ion-footer>

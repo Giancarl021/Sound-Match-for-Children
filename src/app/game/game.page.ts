@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatchItem} from "../classes/match-item";
 import {Items} from "./Items";
+import {Howl} from "howler";
 
 @Component({
     selector: 'app-game',
@@ -11,10 +12,16 @@ import {Items} from "./Items";
 
 export class GamePage {
     user: string;
-    currentAudio: string;
     items: MatchItem[];
     selectedItem: MatchItem;
     cols: MatchItem[][];
+    wrong: MatchItem[];
+    points: number;
+
+    player: Howl;
+    playing: boolean;
+    right: boolean;
+    firstRun: boolean;
 
     constructor(private router: Router) {
         if (this.router.getCurrentNavigation().extras.state) {
@@ -22,21 +29,67 @@ export class GamePage {
         } else {
             this.user = 'Anônimo';
         }
-
+        this.points = 0;
         this.items = [];
 
         for (const item of Items) {
-            this.items.push(new MatchItem(item));
+            const temp = new MatchItem(item);
+            this.items.push(temp);
         }
 
+
+        this.firstRun = true;
+        this.wrong = [];
+        this.right = false;
+        this.player = null;
+        this.playing = false;
         this.selectItem();
         this.generateColumns();
+    }
 
-        // this.currentAudio = '../../assets/audio/fallback.mp3';
+    play() {
+        if (this.playing) {
+            return;
+        }
+
+        if(this.firstRun) this.firstRun = false;
+        this.right = false;
+        const audio: string = this.selectedItem.audio;
+
+        this.player = new Howl({
+            src: [audio],
+            onplay: () => {
+                this.playing = true;
+            },
+            onend: () => {
+                this.playing = false;
+            }
+        });
+        this.player.play();
+    }
+
+    private reset() {
+        this.wrong = [];
+        this.player.stop();
+        this.selectItem();
+        this.playing = false;
+    }
+
+    match(item) {
+        if (item === this.selectedItem) {
+            this.points += this.items.length - this.wrong.length;
+            this.reset();
+            this.right = true;
+        } else {
+            this.wrong.push(item);
+        }
     }
 
     private selectItem() {
-        const i = Math.floor(Math.random() * this.items.length);
+        let i = Math.floor(Math.random() * this.items.length);
+        while(this.items[i] === this.selectedItem) {
+            i = Math.floor(Math.random() * this.items.length);
+        }
         this.selectedItem = this.items[i];
     }
 
