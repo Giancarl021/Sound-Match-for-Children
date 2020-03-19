@@ -13,7 +13,7 @@
     <ion-grid>
         <ion-row *ngFor="let col of cols">
             <ion-col *ngFor="let item of col">
-                <ion-button class="item" [color]="right ? 'success' : (wrong.includes(item) ? 'danger' : 'tertiary')">
+                <ion-button class="item" [color]="right ? 'success' : (wrong.includes(item) ? 'danger' : 'tertiary')" [disabled]="firstRun">
                     <ion-img [src]="item.image" (click)="match(item)"></ion-img>
                 </ion-button>
             </ion-col>

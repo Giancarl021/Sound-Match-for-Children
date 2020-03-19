@@ -4,6 +4,9 @@ import {MatchItem} from "../classes/match-item";
 import {Items} from "./Items";
 import {Howl} from "howler";
 
+import {Storage} from '@ionic/storage';
+import {isNull} from "util";
+
 @Component({
     selector: 'app-game',
     templateUrl: './game.page.html',
@@ -23,7 +26,16 @@ export class GamePage {
     right: boolean;
     firstRun: boolean;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private storage: Storage) {
+
+        storage.get(this.user).then(v => {
+            if (isNull(v)) {
+                storage.set(this.user, 0).then(console.log);
+            } else {
+                this.points = v;
+            }
+        });
+
         if (this.router.getCurrentNavigation().extras.state) {
             this.user = this.router.getCurrentNavigation().extras.state.user;
         } else {
@@ -52,7 +64,7 @@ export class GamePage {
             return;
         }
 
-        if(this.firstRun) this.firstRun = false;
+        if (this.firstRun) this.firstRun = false;
         this.right = false;
         const audio: string = this.selectedItem.audio;
 
@@ -70,7 +82,7 @@ export class GamePage {
 
     private reset() {
         this.wrong = [];
-        this.player.stop();
+        if (this.player) this.player.stop();
         this.selectItem();
         this.playing = false;
     }
@@ -80,6 +92,7 @@ export class GamePage {
             this.points += this.items.length - this.wrong.length;
             this.reset();
             this.right = true;
+            this.storage.set(this.user, this.points).then(console.log);
         } else {
             this.wrong.push(item);
         }
@@ -87,7 +100,7 @@ export class GamePage {
 
     private selectItem() {
         let i = Math.floor(Math.random() * this.items.length);
-        while(this.items[i] === this.selectedItem) {
+        while (this.items[i] === this.selectedItem) {
             i = Math.floor(Math.random() * this.items.length);
         }
         this.selectedItem = this.items[i];
