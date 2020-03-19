@@ -14,7 +14,10 @@ import {IonicStorageModule} from '@ionic/storage';
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule],
+    imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot({
+        name: '__mydb',
+        driverOrder: ['sqlite', 'indexeddb', 'websql', 'localstorage']
+    }), AppRoutingModule],
     providers: [
         StatusBar,
         SplashScreen,

@@ -27,14 +27,7 @@ export class GamePage {
     firstRun: boolean;
 
     constructor(private router: Router, private storage: Storage) {
-
-        storage.get(this.user).then(v => {
-            if (isNull(v)) {
-                storage.set(this.user, 0).then(console.log);
-            } else {
-                this.points = v;
-            }
-        });
+        this.getDatabaseValues().catch(console.log);
 
         if (this.router.getCurrentNavigation().extras.state) {
             this.user = this.router.getCurrentNavigation().extras.state.user;
@@ -118,6 +111,14 @@ export class GamePage {
         }
         if (tmp.length) {
             this.cols.push(tmp);
+        }
+    }
+
+    private async getDatabaseValues() {
+        await this.storage.ready();
+        this.points = await this.storage.get(this.user);
+        if(isNull(this.points)) {
+            await this.storage.set(this.user, 0);
         }
     }
 }
