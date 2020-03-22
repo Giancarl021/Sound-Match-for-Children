@@ -1,2 +1,2 @@
 # Sound-Match-for-Children
-A simple Ionic App that give points to sound matching with images
+Um aplicativo simples desenvolvido em Ionic para crianças identificarem sons de animais.
